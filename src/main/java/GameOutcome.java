@@ -15,7 +15,7 @@ public class GameOutcome {
         this.awayTeam = awayTeam;
         this.homeTeamGoals = homeTeamGoals;
         this.awayTeamGoals = awayTeamGoals;
-        this.goalDifference = Math.abs(homeTeamGoals - awayTeamGoals);
+        this.goalDifference = homeTeamGoals - awayTeamGoals;
         if(homeTeamGoals > awayTeamGoals)
             this.winner = new String(homeTeam);
         else if(awayTeamGoals > homeTeamGoals)
@@ -24,9 +24,36 @@ public class GameOutcome {
             this.isDraw = true;
     }
 
+    public String getHomeTeam() {
+        return homeTeam;
+    }
+
+    public String getAwayTeam() {
+        return awayTeam;
+    }
+
+    public String getWinner() {
+        return winner;
+    }
+
+    public boolean isDraw() {
+        return isDraw;
+    }
+
+    public int getHomeTeamGoals() {
+        return homeTeamGoals;
+    }
+
+    public int getAwayTeamGoals() {
+        return awayTeamGoals;
+    }
+
+    public int getGoalDifference() {
+        return goalDifference;
+    }
+
     @Override
     public String toString() {
-        return "homeTeam = " + homeTeam + " awayTeam = " + awayTeam +
-                " ------- goalDifference = " + goalDifference;
+        return "homeTeam = " + homeTeam + " awayTeam = " + awayTeam + " goalDifference = " + goalDifference;
     }
 }

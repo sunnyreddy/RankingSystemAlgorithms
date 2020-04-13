@@ -12,10 +12,16 @@ import java.util.stream.Collectors;
 // Class to get data from csv files and load in application
 public class EplData {
 
-    private List<GameOutcome> dataset = new ArrayList<>();
-    private Pattern pattern = Pattern.compile(",");
+    private List<GameOutcome> dataset;
+    private Pattern pattern;
+    private List<GameOutcome> remainingGames;
 
     public EplData() {
+
+        dataset = new ArrayList<>();
+        pattern = Pattern.compile(",");
+        remainingGames = new ArrayList<>();
+
         String[] fileNames = new String[]{"src/data/2019-2020.csv"};
         for(String filename : fileNames) {
             getDataFromCsv(filename);
@@ -47,6 +53,22 @@ public class EplData {
         catch (FileNotFoundException e) {
             e.printStackTrace();
         }
+    }
+
+    protected List<GameOutcome> getRemainingGamesData() {
+        File file = new File("src/data/RemainingGames.csv");
+        try {
+            BufferedReader in = new BufferedReader(new FileReader(file));
+            remainingGames = in.lines().skip(1).map(line -> {
+                String[] x = pattern.split(line);
+                return new GameOutcome(x[0], x[1], 0, 0);
+            }).collect(Collectors.toList());
+        }
+        catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+
+        return remainingGames;
     }
 
     protected List<GameOutcome> getDataset() {
