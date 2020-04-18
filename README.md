@@ -12,5 +12,5 @@ Due to Covid19 many matches have postponed so using the current standings and ma
 # Steps to Run Project
 1. Clone the repository
 2. Open project in IntelIJ
-3. Run the main method in Ranking System class to get the final standings in output
+3. Run the main method in RankingSystem.java in main/java/edu/neu/coe to get the final standings in output
 4. Run test classes to check if classes are working properly
