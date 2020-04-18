@@ -1,4 +1,4 @@
-package main.java;
+package edu.neu.coe;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -34,7 +34,7 @@ public class EplData {
             BufferedReader in = new BufferedReader(new FileReader(file));
             dataset = in.lines().skip(1).map( line -> {
                 String[] x = pattern.split(line);
-                return new GameOutcome(x[3],x[4],Integer.parseInt(x[5]),Integer.parseInt(x[6]));
+                return new GameOutcome(x[2],x[3],Integer.parseInt(x[4]),Integer.parseInt(x[5]));
             }).collect(Collectors.toList());
 
 //            Scanner inputStream = new Scanner(file);
@@ -67,7 +67,6 @@ public class EplData {
         catch (FileNotFoundException e) {
             e.printStackTrace();
         }
-
         return remainingGames;
     }
 

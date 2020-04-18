@@ -1,4 +1,4 @@
-package main.java;
+package edu.neu.coe;
 
 public class GameOutcome {
 

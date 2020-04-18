@@ -1,4 +1,4 @@
-package main.java;
+package edu.neu.coe;
 
 import java.util.*;
 
@@ -40,8 +40,12 @@ public class RankingSystem {
             }
         }
         teamRanking = sortByValue(teamRanking);
+        System.out.println("*********************** Current Standings of teams ********************");
+        int rank = 0;
+        System.out.format("%32s%10s%16s", "Team", "Score", "Rank\n");
+        System.out.println("-----------------------------------------------------------------------------");
         for(Map.Entry<String,Integer> e: teamRanking.entrySet()){
-            System.out.println(e.getKey() + "    "+ e.getValue());
+            System.out.format("%32s%10d%16s", e.getKey(),  e.getValue(), ++rank + "\n");
         }
     }
 
@@ -50,20 +54,21 @@ public class RankingSystem {
         // fetch data
         EplData epldata = new EplData();
         List<GameOutcome> dataset = epldata.getDataset();
-
         // print current rankings
-        System.out.println(" Current standings of teams ");
         getCurrentRankings(dataset);
 
         // do predictions
         Predictor predictor = new Predictor(dataset, epldata.getRemainingGamesData(), teamRanking);
 
         // print predicted end of season rankings
-        System.out.println(" My Predictions after whole Season");
         Map<String,Integer> predictedRankings = predictor.getPredictedRankings();
         predictedRankings = sortByValue(predictedRankings);
+        int rank = 0;
+        System.out.println("********************* My Predictions after whole Season ********************");
+        System.out.format("%32s%10s%16s", "Team", "Score", "Rank\n");
+        System.out.println("-----------------------------------------------------------------------------");
         for(Map.Entry<String,Integer> e: predictedRankings.entrySet()){
-            System.out.println(e.getKey() + "    "+ e.getValue());
+            System.out.format("%32s%10d%16s", e.getKey(),  e.getValue(), ++rank + "\n");
         }
 
         // show results in web page, graphs etc
